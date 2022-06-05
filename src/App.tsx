@@ -1,26 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Row from "./Row";
+import requests from "./request";
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* Repetitive rows, with the title of netflix, crave, disney and Apple plus */}
+      <Row title="Netflix" fetchUrl={requests.fetchNetflix} />
+      <Row title="Crave" fetchUrl={requests.fetchCrave} />
+      <Row title="Disney" fetchUrl={requests.fetchDisney} />
+      <Row title="Apple Plus" fetchUrl={requests.fetchApple} />
     </div>
   );
-}
+};
 
 export default App;
