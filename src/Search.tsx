@@ -1,12 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import axios from "./axios";
 import Imna from "./image-not-available.jpg";
 
 const base_url = "https://image.tmdb.org/t/p/original";
 
 const Search: React.FC = () => {
-  const q = new URLSearchParams(window.location.search).get("q");
+  const [searchParam, setSearchParam] = useSearchParams();
+  const q = searchParam.get("q") || "";
+  // const q = new URLSearchParams(window.location.search).get("q");
   const [movies, setMovies] = React.useState<any[]>([]);
   const [localMovies, setLocalMovies] = React.useState<any[]>(() => {
     const localData = localStorage.getItem("movies");

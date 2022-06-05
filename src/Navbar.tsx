@@ -8,8 +8,14 @@ const Navbar: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     navigate(`/search?q=${input}`);
-    setInput("");
+    // setInput("");
   };
+  React.useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get("q");
+    if (q) {
+      setInput(q);
+    }
+  }, []);
   return (
     <header className="header">
       <Link to="/">
