@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
-import Navbar from "./Navbar";
+import App from "./pages/App";
+import Navbar from "./components/Navbar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Details from "./Details";
-import Search from "./Search";
-import WatchList from "./WatchList";
+import Details from "./pages/Details";
+import Search from "./pages/Search";
+import WatchList from "./pages/WatchList";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

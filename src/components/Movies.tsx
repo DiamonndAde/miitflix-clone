@@ -1,32 +1,17 @@
 import React from "react";
-import { Link, useSearchParams } from "react-router-dom";
-import axios from "./axios";
-import Imna from "./image-not-available.jpg";
+import { Link } from "react-router-dom";
+import Imna from "../image-not-available.jpg";
+import "../../node_modules/font-awesome/css/font-awesome.min.css";
 
 const base_url = "https://image.tmdb.org/t/p/original";
-
-const Search: React.FC = () => {
-  const [searchParam, setSearchParam] = useSearchParams();
-  const q = searchParam.get("q") || "";
-  // const q = new URLSearchParams(window.location.search).get("q");
-  const [movies, setMovies] = React.useState<any[]>([]);
+const Movies: React.FC<{
+  movies: any;
+  title: string;
+}> = ({ movies, title }: { movies: any; title: string }) => {
   const [localMovies, setLocalMovies] = React.useState<any[]>(() => {
     const localData = localStorage.getItem("movies");
     return localData ? JSON.parse(localData) : [];
   });
-
-  React.useEffect(() => {
-    async function fetchData() {
-      //https://api.themoviedb.org/3/ then concat the fetchUrl
-      const request = await axios.get(
-        `search/tv?api_key=7fd727d5175ac112f4c3b1ae6d2ccbc9&language=en-US&query=${q}`
-      );
-      setMovies(request.data.results);
-      return request;
-    }
-    fetchData();
-  }, [q]);
-
   const checkId = (movieId: number) => {
     for (var i in localMovies) {
       if (localMovies[i].id === movieId) {
@@ -53,12 +38,11 @@ const Search: React.FC = () => {
   React.useEffect(() => {
     localStorage.setItem("movies", JSON.stringify(localMovies));
   }, [localMovies]);
-
   return (
     <div className="row__list">
       {/* Title */}
       <div className="row__title">
-        <h1>Results</h1>
+        <h1>{title}</h1>
         <div className="row__wrapper">
           {/* Movies */}
           {movies.map((movie: any) => (
@@ -99,4 +83,4 @@ const Search: React.FC = () => {
   );
 };
 
-export default Search;
+export default Movies;

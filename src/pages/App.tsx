@@ -1,7 +1,6 @@
 import React from "react";
-import "./App.css";
-import Row from "./Row";
-import requests from "./request";
+import Row from "../components/Row";
+import requests from "../utility/request";
 
 const App: React.FC = () => {
   return (

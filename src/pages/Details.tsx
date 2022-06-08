@@ -1,6 +1,6 @@
 import React from "react";
-import axios from "./axios";
-import "./Details.css";
+import axios from "../utility/axios";
+import "../css/Details.css";
 import { useParams } from "react-router-dom";
 
 const base_url = "https://image.tmdb.org/t/p/original";
@@ -65,9 +65,10 @@ const Details: React.FC = () => {
           onClick={() => handleWatchlist(movie)}
         >
           {`${
-            checkId(movie.id) ? "- Remove from watch list" : "+ Add to watch"
+            checkId(movie.id)
+              ? "- Remove from watch list"
+              : "+ Add to watch list"
           }`}
-          list
         </button>
       </div>
     </div>
